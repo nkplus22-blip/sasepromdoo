@@ -19,18 +19,28 @@
             background-color: #f8faf9;
             color: #2d3748;
             line-height: 1.7;
+            padding-top: 210px; /* Sprječava skakanje sadržaja zbog fiksnog headera */
         }
 
-        /* --- NAVIGACIJA (HEADER) --- */
+        /* --- SMART STICKY HEADER --- */
         header {
             background-color: #ffffff;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
-            position: sticky;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             border-bottom: 1px solid #edf2f7;
-            padding: 15px 0;
+            padding: 20px 0 15px 0;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        
+        /* Klasa koju JavaScript dodaje za skrivanje menija pri skrolu dole */
+        header.header-hidden {
+            transform: translateY(-100%);
+        }
+        
         .header-container {
             display: flex;
             flex-direction: column;
@@ -38,72 +48,85 @@
             max-width: 1250px;
             margin: 0 auto;
             padding: 0 20px;
-            gap: 15px;
+            gap: 18px;
         }
         
-        /* Povećan i uočljiv logo */
+        /* Moćan, dominantan i uočljiv logo */
         .logo img {
-            max-height: 120px;
+            max-height: 135px;
             width: auto;
             display: block;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));
         }
         .logo img:hover {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
         
         nav {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             justify-content: center;
             width: 100%;
         }
         nav a {
             text-decoration: none;
-            color: #4a5568;
+            color: #3a4454;
             font-weight: 700;
             font-size: 1.05rem;
-            transition: color 0.3s, background-color 0.3s;
+            transition: all 0.3s ease;
             position: relative;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 12px;
             white-space: nowrap;
+            background-color: #f3f7f4;
+            border: 1px solid #e2ece5;
         }
         nav a:hover {
-            color: #27ae60;
-            background-color: #f0fdf4;
+            color: #ffffff;
+            background-color: #27ae60;
+            border-color: #27ae60;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
         }
 
-        /* --- HERO SEKCIJA --- */
+        /* --- HERO SEKCIJA SA TRAŽENOM SLIKOM U POZADINI --- */
         .hero {
-            background: linear-gradient(135deg, #163318 0%, #27ae60 100%);
-            color: white;
-            padding: 130px 20px;
-            text-align: center;
             position: relative;
+            background-image: url('pozadinateksta.JPG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            color: white;
+            padding: 150px 20px;
+            text-align: center;
             overflow: hidden;
         }
+        /* Tamno-zeleni overlay sloj koji napucava izgled i osigurava kristalnu čitljivost teksta */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.05"/></svg>') repeat;
-            opacity: 0.3;
+            background: linear-gradient(135deg, rgba(22, 51, 24, 0.88) 0%, rgba(39, 174, 96, 0.82) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         .hero h1 {
-            font-size: 3.4rem;
+            font-size: 3.6rem;
             margin-bottom: 25px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             max-width: 850px;
             margin: 0 auto;
             opacity: 0.95;
-            font-weight: 300;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         /* --- GLAVNI KONTEJNER --- */
@@ -119,7 +142,7 @@
             margin-bottom: 50px;
         }
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: #163318;
             font-weight: 800;
             margin-bottom: 15px;
@@ -129,11 +152,11 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 70px;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background: #27ae60;
             margin: 12px auto 0 auto;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         /* --- O NAMA SEKCIJA --- */
@@ -155,7 +178,7 @@
             border-bottom-left-radius: 24px;
         }
         .about-text p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #4a5568;
             margin-bottom: 20px;
         }
@@ -163,18 +186,20 @@
             color: #163318;
         }
         
-        /* Istaknuti boks za dostavu unutar O Nama */
+        /* Moderni boks za dostavu s ikonicom kamiona */
         .delivery-notice {
-            background-color: #f0fdf4;
-            border-left: 4px solid #27ae60;
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            margin-top: 25px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e6f7ec 100%);
+            border-left: 5px solid #27ae60;
+            padding: 22px 25px;
+            border-radius: 0 16px 16px 0;
+            margin-top: 30px;
             font-weight: 600;
-            color: #163318;
+            font-size: 1.2rem;
+            color: #112913;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.05);
         }
 
         /* --- GLAVNI ARTIKLI (TOP 3) --- */
@@ -186,19 +211,19 @@
         }
         .featured-card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 12px 35px rgba(0,0,0,0.04);
             border: 1px solid #eef2ef;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
         }
         .featured-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 22px 45px rgba(22, 51, 24, 0.09);
+            transform: translateY(-12px);
+            box-shadow: 0 24px 48px rgba(22, 51, 24, 0.1);
         }
         .image-container {
             width: 100%;
-            height: 290px;
+            height: 300px;
             position: relative;
             background-color: #f3f4f6;
             overflow: hidden;
@@ -207,10 +232,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .featured-card:hover .image-container img {
-            transform: scale(1.06);
+            transform: scale(1.07);
         }
         .badge {
             position: absolute;
@@ -236,13 +261,13 @@
             padding: 30px;
         }
         .card-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.55rem;
             color: #163318;
             margin-bottom: 12px;
             font-weight: 700;
         }
         .card-content p {
-            color: #718096;
+            color: #616e80;
             font-size: 1.1rem;
         }
 
@@ -257,7 +282,7 @@
         }
         .others-intro {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             color: #4a5568;
             margin-bottom: 50px;
             max-width: 800px;
@@ -273,15 +298,16 @@
             display: grid;
             grid-template-columns: 280px 1fr;
             background: #fafbfa;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid #eef2ef;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
         .other-item-card:hover {
             background: #ffffff;
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+            border-color: #d1e7d6;
         }
         .other-image-box {
             height: 180px;
@@ -292,10 +318,10 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s;
+            transition: transform 0.5s ease;
         }
         .other-item-card:hover .other-image-box img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
         .other-info {
             padding: 30px;
@@ -304,13 +330,13 @@
             justify-content: center;
         }
         .other-info h4 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #163318;
             margin-bottom: 8px;
             font-weight: 700;
         }
         .other-info p {
-            color: #718096;
+            color: #616e80;
             font-size: 1.05rem;
         }
 
@@ -338,14 +364,14 @@
             border-top: 5px solid #27ae60;
         }
         .footer-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
         .footer-info p {
             margin: 8px 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             opacity: 0.85;
         }
 
@@ -386,39 +412,45 @@
 
         /* --- ODZIVNOST (RESPONSIVE) --- */
         @media (max-width: 820px) {
+            body {
+                padding-top: 175px; /* Prilagođeno fiksno rastojanje za mobilne */
+            }
             header {
-                padding: 15px 0 10px 0;
+                padding: 15px 0 12px 0;
             }
             .header-container {
                 gap: 12px;
                 padding: 0;
             }
             .logo img {
-                max-height: 105px; /* Savršeno balansirana veličina za mobilne */
+                max-height: 105px; /* Savršeno odmjeren, uočljiv logo na telefonima */
             }
             
-            /* Horizontalni i elegantni skrol meni za mobilne koji rješava problem sa slike */
+            /* Čist, horizontalno skrolujući meni bez ikakvog prelamanja teksta */
             nav {
-                gap: 5px;
-                padding: 5px 15px 10px 15px;
+                gap: 8px;
+                padding: 5px 20px 12px 20px;
                 overflow-x: auto;
                 justify-content: flex-start;
                 width: 100%;
                 -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Skriva scrollbar na Firefoxu */
+                scrollbar-width: none;
             }
             nav::-webkit-scrollbar {
-                display: none; /* Skriva scrollbar na Chrome/Safari */
+                display: none;
             }
             nav a {
-                font-size: 0.95rem;
-                padding: 8px 14px;
+                font-size: 0.98rem;
+                padding: 10px 16px;
                 background-color: #f1f5f9;
                 border: 1px solid #e2e8f0;
             }
             
             .hero h1 {
-                font-size: 2.3rem;
+                font-size: 2.4rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
             }
             .other-item-card {
                 grid-template-columns: 1fr;
@@ -427,15 +459,20 @@
                 height: 220px;
             }
             .about-section {
-                padding: 30px;
+                padding: 35px 25px;
+            }
+            .delivery-notice {
+                font-size: 1.1rem;
+                padding: 18px;
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGACIJA / HEADER -->
-    <header>
+    <header id="main-header">
         <div class="header-container">
             <div class="logo">
                 <img src="saselogo.PNG" alt="Sa-Se PROM Logo">
@@ -449,16 +486,15 @@
         </div>
     </header>
 
-    <!-- HERO SEKCIJA -->
     <section class="hero">
-        <h1>Vrhunsko Voće i Povrće za Vaš Biznis</h1>
-        <p>Direktan uvoz, stroga kontrola kvaliteta i pouzdana distribucija na tržištu Bosne i Hercegovine.</p>
+        <div class="hero-content">
+            <h1>Vrhunsko Voće i Povrće za Vaš Biznis</h1>
+            <p>Direktan uvoz, stroga kontrola kvaliteta i pouzdana distribucija na tržištu Bosne i Hercegovine.</p>
+        </div>
     </section>
 
-    <!-- GLAVNI SADRŽAJ -->
     <div class="container">
 
-        <!-- O NAMA SEKCIJA -->
         <section id="o-nama" class="about-section">
             <div class="section-header" style="text-align: left; margin-bottom: 30px;">
                 <h2 class="section-title">O Nama</h2>
@@ -468,15 +504,13 @@
                 <p>Naša misija je jednostavna: postaviti zlatni standard u industriji kroz besprijekoran lanac snabdijevanja, rigoroznu kontrolu svježine i profesionalizam koji nadilazi očekivanja klijenata. Vjerujemo da naši kupci zaslužuju samo najbolje, zbog čega svaku partiju robe lično selektujemo i provjeravamo.</p>
                 <p>Bilo da ste trgovački lanac, restoran ili distributer, sa Sa-Se PROM d.o.o. dobijate više od dobavljača – dobijate oslonac za rast Vašeg poslovanja, stabilnost isporuke tokom cijele godine i artikle koji plijene pažnju izgledom i okusom.</p>
                 
-                <!-- Dodatna tražena stavka o dovozu robe -->
                 <div class="delivery-notice">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #27ae60; flex-shrink: 0;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #27ae60; flex-shrink: 0;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                     <span>Kupovinom veće količine nudimo dovoz na adresu u cijeloj Bosni i Hercegovini, također u bližem okrugu obezbjeđujemo dostavu i na manje količine.</span>
                 </div>
             </div>
         </section>
 
-        <!-- TOP 3 GLAVNA ARTIKLA -->
         <section id="glavni-artikli">
             <div class="section-header">
                 <h2 class="section-title">Naši Glavni Artikli</h2>
@@ -520,7 +554,6 @@
             </div>
         </section>
 
-        <!-- PROŠIRENI ASORTIMAN (9 SLIKA) -->
         <section id="ostala-ponuda" class="others-section">
             <div class="section-header">
                 <h2 class="section-title">Prošireni Asortiman</h2>
@@ -622,7 +655,6 @@
             </div>
         </section>
 
-        <!-- KAKO DO NAS SEKCIJA -->
         <section id="kontakt" style="margin-bottom: 40px;">
             <div class="section-header">
                 <h2 class="section-title">Kako doći do nas?</h2>
@@ -641,16 +673,14 @@
 
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-info">
             <h3>Sa-Se PROM d.o.o.</h3>
             <p><strong>Sjedište firme:</strong> Brčko distrikt BiH, Arizona, 76000 Brčko</p>
-            <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.6;">&copy; 2026 Sa-Se PROM d.o.o. Sva prava zadržana.</p>
+            <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.6;">© 2026 Sa-Se PROM d.o.o. Sva prava zadržana.</p>
         </div>
     </footer>
 
-    <!-- PLUTAJUĆA DUGMAD ZA WHATSAPP -->
     <div class="whatsapp-float-container">
         <a href="https://wa.me/38761395555" class="whatsapp-btn" target="_blank" title="Kontaktirajte nas na WhatsApp 1">
             <svg viewBox="0 0 24 24">
@@ -666,6 +696,30 @@
             <span>WhatsApp 2</span>
         </a>
     </div>
+
+    <script>
+        let zadnjiSkrol = 0;
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            const trenutniSkrol = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Sprječava izvršavanje skripte na samom vrhu stranice ili ako ode u minus na iOS-u
+            if (trenutniSkrol <= 0) {
+                header.classList.remove('header-hidden');
+                return;
+            }
+
+            // Ako korisnik skrola prema dolje, sakrij meni. Ako skrola prema gore, prikaži ga.
+            if (trenutniSkrol > zadnjiSkrol && !header.classList.contains('header-hidden')) {
+                header.classList.add('header-hidden');
+            } else if (trenutniSkrol < zadnjiSkrol && header.classList.contains('header-hidden')) {
+                header.classList.remove('header-hidden');
+            }
+
+            zadnjiSkrol = trenutniSkrol;
+        });
+    </script>
 
 </body>
 </html>
