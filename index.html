@@ -24,64 +24,62 @@
         /* --- NAVIGACIJA (HEADER) --- */
         header {
             background-color: #ffffff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid #edf2f7;
+            padding: 15px 0;
         }
         .header-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             max-width: 1250px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 0 20px;
+            gap: 15px;
         }
+        
+        /* Povećan i uočljiv logo */
         .logo img {
-            max-height: 75px;
+            max-height: 120px;
             width: auto;
             display: block;
-            transition: transform 0.3s;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
         }
         .logo img:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
+        
         nav {
             display: flex;
-            gap: 30px;
+            gap: 25px;
+            justify-content: center;
+            width: 100%;
         }
         nav a {
             text-decoration: none;
             color: #4a5568;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.3s;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.3s, background-color 0.3s;
             position: relative;
-            padding: 5px 0;
-        }
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #27ae60;
-            transition: width 0.3s;
+            padding: 8px 16px;
+            border-radius: 8px;
+            white-space: nowrap;
         }
         nav a:hover {
-            color: #1e4620;
-        }
-        nav a:hover::after {
-            width: 100%;
+            color: #27ae60;
+            background-color: #f0fdf4;
         }
 
         /* --- HERO SEKCIJA --- */
         .hero {
             background: linear-gradient(135deg, #163318 0%, #27ae60 100%);
             color: white;
-            padding: 120px 20px;
+            padding: 130px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -94,11 +92,11 @@
             opacity: 0.3;
         }
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             margin-bottom: 25px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .hero p {
             font-size: 1.4rem;
@@ -121,7 +119,7 @@
             margin-bottom: 50px;
         }
         .section-title {
-            font-size: 2.4rem;
+            font-size: 2.5rem;
             color: #163318;
             font-weight: 800;
             margin-bottom: 15px;
@@ -131,17 +129,17 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 70px;
             height: 4px;
             background: #27ae60;
-            margin: 10px auto 0 auto;
+            margin: 12px auto 0 auto;
             border-radius: 2px;
         }
 
         /* --- O NAMA SEKCIJA --- */
         .about-section {
             background: #ffffff;
-            padding: 50px;
+            padding: 55px;
             border-radius: 24px;
             box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03);
             margin-bottom: 90px;
@@ -164,6 +162,20 @@
         .about-text p strong {
             color: #163318;
         }
+        
+        /* Istaknuti boks za dostavu unutar O Nama */
+        .delivery-notice {
+            background-color: #f0fdf4;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin-top: 25px;
+            font-weight: 600;
+            color: #163318;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
         /* --- GLAVNI ARTIKLI (TOP 3) --- */
         .featured-grid {
@@ -176,43 +188,49 @@
             background: #ffffff;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.04);
             border: 1px solid #eef2ef;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
         }
         .featured-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(22, 51, 24, 0.08);
+            transform: translateY(-10px);
+            box-shadow: 0 22px 45px rgba(22, 51, 24, 0.09);
         }
         .image-container {
             width: 100%;
-            height: 280px;
+            height: 290px;
             position: relative;
             background-color: #f3f4f6;
+            overflow: hidden;
         }
         .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .featured-card:hover .image-container img {
+            transform: scale(1.06);
         }
         .badge {
             position: absolute;
             top: 20px;
             left: 20px;
             color: white;
-            padding: 8px 16px;
+            padding: 8px 18px;
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             border-radius: 50px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             letter-spacing: 0.5px;
+            z-index: 10;
         }
         .badge-bestseller {
-            background: linear-gradient(135deg, #d35400, #e67e22);
+            background: linear-gradient(135deg, #e67e22, #d35400);
         }
         .badge-leader {
-            background: linear-gradient(135deg, #2980b9, #3498db);
+            background: linear-gradient(135deg, #2980b9, #1f618d);
         }
         .card-content {
             padding: 30px;
@@ -249,7 +267,7 @@
         .others-list {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 25px;
         }
         .other-item-card {
             display: grid;
@@ -258,20 +276,26 @@
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid #eef2ef;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
         .other-item-card:hover {
-            background: #f4f7f4;
+            background: #ffffff;
             transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
         .other-image-box {
             height: 180px;
             background-color: #edf2f7;
+            overflow: hidden;
         }
         .other-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .other-item-card:hover .other-image-box img {
+            transform: scale(1.05);
         }
         .other-info {
             padding: 30px;
@@ -362,13 +386,37 @@
 
         /* --- ODZIVNOST (RESPONSIVE) --- */
         @media (max-width: 820px) {
+            header {
+                padding: 15px 0 10px 0;
+            }
             .header-container {
-                flex-direction: column;
-                gap: 20px;
+                gap: 12px;
+                padding: 0;
             }
+            .logo img {
+                max-height: 105px; /* Savršeno balansirana veličina za mobilne */
+            }
+            
+            /* Horizontalni i elegantni skrol meni za mobilne koji rješava problem sa slike */
             nav {
-                gap: 15px;
+                gap: 5px;
+                padding: 5px 15px 10px 15px;
+                overflow-x: auto;
+                justify-content: flex-start;
+                width: 100%;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Skriva scrollbar na Firefoxu */
             }
+            nav::-webkit-scrollbar {
+                display: none; /* Skriva scrollbar na Chrome/Safari */
+            }
+            nav a {
+                font-size: 0.95rem;
+                padding: 8px 14px;
+                background-color: #f1f5f9;
+                border: 1px solid #e2e8f0;
+            }
+            
             .hero h1 {
                 font-size: 2.3rem;
             }
@@ -386,6 +434,7 @@
 </head>
 <body>
 
+    <!-- NAVIGACIJA / HEADER -->
     <header>
         <div class="header-container">
             <div class="logo">
@@ -400,13 +449,16 @@
         </div>
     </header>
 
+    <!-- HERO SEKCIJA -->
     <section class="hero">
         <h1>Vrhunsko Voće i Povrće za Vaš Biznis</h1>
         <p>Direktan uvoz, stroga kontrola kvaliteta i pouzdana distribucija na tržištu Bosne i Hercegovine.</p>
     </section>
 
+    <!-- GLAVNI SADRŽAJ -->
     <div class="container">
 
+        <!-- O NAMA SEKCIJA -->
         <section id="o-nama" class="about-section">
             <div class="section-header" style="text-align: left; margin-bottom: 30px;">
                 <h2 class="section-title">O Nama</h2>
@@ -415,9 +467,16 @@
                 <p>Dobrodošli u <strong>Sa-Se PROM d.o.o.</strong>, Vašeg strateškog partnera u svijetu svježine, kvaliteta i vrhunskih okusa. Specijalizovani smo za uvoz, veleprodaju i distribuciju najkvalitetnijeg voća i povrća iz pažljivo odabranih svjetskih regija direktno do Vašeg prodajnog mjesta.</p>
                 <p>Naša misija je jednostavna: postaviti zlatni standard u industriji kroz besprijekoran lanac snabdijevanja, rigoroznu kontrolu svježine i profesionalizam koji nadilazi očekivanja klijenata. Vjerujemo da naši kupci zaslužuju samo najbolje, zbog čega svaku partiju robe lično selektujemo i provjeravamo.</p>
                 <p>Bilo da ste trgovački lanac, restoran ili distributer, sa Sa-Se PROM d.o.o. dobijate više od dobavljača – dobijate oslonac za rast Vašeg poslovanja, stabilnost isporuke tokom cijele godine i artikle koji plijene pažnju izgledom i okusom.</p>
+                
+                <!-- Dodatna tražena stavka o dovozu robe -->
+                <div class="delivery-notice">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #27ae60; flex-shrink: 0;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <span>Kupovinom veće količine nudimo dovoz na adresu u cijeloj Bosni i Hercegovini, također u bližem okrugu obezbjeđujemo dostavu i na manje količine.</span>
+                </div>
             </div>
         </section>
 
+        <!-- TOP 3 GLAVNA ARTIKLA -->
         <section id="glavni-artikli">
             <div class="section-header">
                 <h2 class="section-title">Naši Glavni Artikli</h2>
@@ -461,6 +520,7 @@
             </div>
         </section>
 
+        <!-- PROŠIRENI ASORTIMAN (9 SLIKA) -->
         <section id="ostala-ponuda" class="others-section">
             <div class="section-header">
                 <h2 class="section-title">Prošireni Asortiman</h2>
@@ -471,97 +531,98 @@
                 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="tri.jpg" alt="Premium Artikal">
+                        <img src="tri.jpg" alt="Paradajz">
                     </div>
                     <div class="other-info">
                         <h4>Paradajz</h4>
-
+                        <p>Svjež paradajz vrhunskog izgleda i sočnog okusa, biran za potrebe domaćeg tržišta.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="cetiri.jpg" alt="Premium Artikal">
+                        <img src="cetiri.jpg" alt="Paprika crvena">
                     </div>
                     <div class="other-info">
                         <h4>Paprika crvena</h4>
-                
+                        <p>Mesnate crvene paprike idealne za lance trgovina i dalju distribuciju.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="sest.jpg" alt="Premium Artikal">
+                        <img src="sest.jpg" alt="Trešnja">
                     </div>
                     <div class="other-info">
                         <h4>Trešnja</h4>
-                        
+                        <p>Pažljivo obrano sezonsko voće vrhunske klase, pakovano po najvišim standardima.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="sedam.HEIC" alt="Premium Artikal">
+                        <img src="sedam.HEIC" alt="Sezonska Ponuda">
                     </div>
                     <div class="other-info">
-                        <h4></h4>
-                        
+                        <h4>Premium Sezonsko Povrće</h4>
+                        <p>Uvoz iz zemalja EU i regiona uz zagarantovanu svježinu i stabilne isporuke.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="osam.jpg" alt="Premium Artikal">
+                        <img src="osam.jpg" alt="Trešnja">
                     </div>
                     <div class="other-info">
-                        <h4>Trešnja</h4>
-                        
+                        <h4>Trešnja - Izbor Klasa</h4>
+                        <p>Slatke i čvrste trešnje sa geografskim porijeklom iz najboljih voćnjaka.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="devet.HEIC" alt="Premium Artikal">
+                        <img src="devet.HEIC" alt="Premium Voće">
                     </div>
                     <div class="other-info">
-                        <h4></h4>
-                        
+                        <h4>Premium Sezonsko Voće</h4>
+                        <p>Klasirana roba spremna za plasiranje na police marketa i veletržnica.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="dvanaest.jpg" alt="Premium Artikal">
+                        <img src="dvanaest.jpg" alt="Jagoda">
                     </div>
                     <div class="other-info">
                         <h4>Jagoda</h4>
-                        
+                        <p>Mirisne i svježe uvozne jagode dostupne u namjenskim ambalažama čuvanim na optimalnoj temperaturi.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="trinaest.jpg" alt="Premium Artikal">
+                        <img src="trinaest.jpg" alt="Breskva">
                     </div>
                     <div class="other-info">
                         <h4>Breskva</h4>
-                        
+                        <p>Sočne, klasirane breskve prve klase uvezene iz kontrolisanih uzgajališta.</p>
                     </div>
                 </div>
 
                 <div class="other-item-card">
                     <div class="other-image-box">
-                        <img src="cetrnaest.jpg" alt="Premium Artikal">
+                        <img src="cetrnaest.jpg" alt="Bijeli luk">
                     </div>
                     <div class="other-info">
-                        </h4>Bijeli luk</h4>
-                        
+                        <h4>Bijeli luk</h4>
+                        <p>Dugotrajne glavice bijelog luka vrhunskog kvaliteta i jake arome.</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
+        <!-- KAKO DO NAS SEKCIJA -->
         <section id="kontakt" style="margin-bottom: 40px;">
             <div class="section-header">
                 <h2 class="section-title">Kako doći do nas?</h2>
@@ -580,6 +641,7 @@
 
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-info">
             <h3>Sa-Se PROM d.o.o.</h3>
@@ -588,6 +650,7 @@
         </div>
     </footer>
 
+    <!-- PLUTAJUĆA DUGMAD ZA WHATSAPP -->
     <div class="whatsapp-float-container">
         <a href="https://wa.me/38761395555" class="whatsapp-btn" target="_blank" title="Kontaktirajte nas na WhatsApp 1">
             <svg viewBox="0 0 24 24">
