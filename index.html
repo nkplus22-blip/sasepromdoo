@@ -1,1 +1,608 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sa-Se PROM d.o.o. | Premium Uvoz i Distribucija Voća i Povrća</title>
+    <style>
+        /* --- RESET I OSNOVNI STILOVI --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #f8faf9;
+            color: #2d3748;
+            line-height: 1.7;
+        }
 
+        /* --- NAVIGACIJA (HEADER) --- */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        .logo img {
+            max-height: 75px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .logo img:hover {
+            transform: scale(1.03);
+        }
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #27ae60;
+            transition: width 0.3s;
+        }
+        nav a:hover {
+            color: #1e4620;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SEKCIJA --- */
+        .hero {
+            background: linear-gradient(135deg, #163318 0%, #27ae60 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.05"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 850px;
+            margin: 0 auto;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* --- GLAVNI KONTEJNER --- */
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* --- SEKCIJA NASLOVI --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title {
+            font-size: 2.4rem;
+            color: #163318;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #27ae60;
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- O NAMA SEKCIJA --- */
+        .about-section {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03);
+            margin-bottom: 90px;
+            border: 1px solid #f0f4f1;
+            position: relative;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 8px; height: 100%;
+            background: linear-gradient(to bottom, #27ae60, #163318);
+            border-top-left-radius: 24px;
+            border-bottom-left-radius: 24px;
+        }
+        .about-text p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+        .about-text p strong {
+            color: #163318;
+        }
+
+        /* --- GLAVNI ARTIKLI (TOP 3) --- */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+            margin-bottom: 90px;
+        }
+        .featured-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #eef2ef;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+        .featured-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(22, 51, 24, 0.08);
+        }
+        .image-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            background-color: #f3f4f6;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
+        .badge-bestseller {
+            background: linear-gradient(135deg, #d35400, #e67e22);
+        }
+        .badge-leader {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+        .card-content {
+            padding: 30px;
+        }
+        .card-content h3 {
+            font-size: 1.5rem;
+            color: #163318;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .card-content p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        /* --- PROŠIRENI ASORTIMAN (9 SLIKA) --- */
+        .others-section {
+            background-color: #ffffff;
+            padding: 60px 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03);
+            margin-bottom: 90px;
+            border: 1px solid #f0f4f1;
+        }
+        .others-intro {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .others-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .other-item-card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            background: #fafbfa;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #eef2ef;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .other-item-card:hover {
+            background: #f4f7f4;
+            transform: translateX(5px);
+        }
+        .other-image-box {
+            height: 180px;
+            background-color: #edf2f7;
+        }
+        .other-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .other-info {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .other-info h4 {
+            font-size: 1.3rem;
+            color: #163318;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .other-info p {
+            color: #718096;
+            font-size: 1.05rem;
+        }
+
+        /* --- LOKACIJA I KAKO DO NAS --- */
+        .map-container {
+            width: 100%;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #163318;
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 5px solid #27ae60;
+        }
+        .footer-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .footer-info p {
+            margin: 8px 0;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        /* --- PLUTAJUĆA WHATSAPP DUGMAD --- */
+        .whatsapp-float-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-4px);
+            background-color: #20ba5a;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+        }
+        .whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        /* --- ODZIVNOST (RESPONSIVE) --- */
+        @media (max-width: 820px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            nav {
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .other-item-card {
+                grid-template-columns: 1fr;
+            }
+            .other-image-box {
+                height: 220px;
+            }
+            .about-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="saselogo.PNG" alt="Sa-Se PROM Logo">
+            </div>
+            <nav>
+                <a href="#o-nama">O Nama</a>
+                <a href="#glavni-artikli">Glavni Artikli</a>
+                <a href="#ostala-ponuda">Ostala Ponuda</a>
+                <a href="#kontakt">Kako do nas</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Vrhunsko Voće i Povrće za Vaš Biznis</h1>
+        <p>Direktan uvoz, stroga kontrola kvaliteta i pouzdana distribucija na tržištu Bosne i Hercegovine.</p>
+    </section>
+
+    <div class="container">
+
+        <section id="o-nama" class="about-section">
+            <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                <h2 class="section-title">O Nama</h2>
+            </div>
+            <div class="about-text">
+                <p>Dobrodošli u <strong>Sa-Se PROM d.o.o.</strong>, Vašeg strateškog partnera u svijetu svježine, kvaliteta i vrhunskih okusa. Specijalizovani smo za uvoz, veleprodaju i distribuciju najkvalitetnijeg voća i povrća iz pažljivo odabranih svjetskih regija direktno do Vašeg prodajnog mjesta.</p>
+                <p>Naša misija je jednostavna: postaviti zlatni standard u industriji kroz besprijekoran lanac snabdijevanja, rigoroznu kontrolu svježine i profesionalizam koji nadilazi očekivanja klijenata. Vjerujemo da naši kupci zaslužuju samo najbolje, zbog čega svaku partiju robe lično selektujemo i provjeravamo.</p>
+                <p>Bilo da ste trgovački lanac, restoran ili distributer, sa Sa-Se PROM d.o.o. dobijate više od dobavljača – dobijate oslonac za rast Vašeg poslovanja, stabilnost isporuke tokom cijele godine i artikle koji plijene pažnju izgledom i okusom.</p>
+            </div>
+        </section>
+
+        <section id="glavni-artikli">
+            <div class="section-header">
+                <h2 class="section-title">Naši Glavni Artikli</h2>
+            </div>
+            
+            <div class="featured-grid">
+                
+                <div class="featured-card">
+                    <div class="image-container">
+                        <span class="badge badge-bestseller">Najprodavanije</span>
+                        <img src="krompirnj.JPG" alt="Uvoz krompira">
+                    </div>
+                    <div class="card-content">
+                        <h3>Krompir - Vrhunski Uvoz</h3>
+                        <p>Uvoz krompira iz država koje posjeduju najbolje kvalitete.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <div class="image-container">
+                        <span class="badge badge-bestseller">Najprodavanije</span>
+                        <img src="lukhol.JPG" alt="Uvoz luka">
+                    </div>
+                    <div class="card-content">
+                        <h3>Crveni i Bijeli Luk</h3>
+                        <p>Uvoz luka iz država koje posjeduju najbolje kvalitete.</p>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <div class="image-container">
+                        <span class="badge badge-leader">Tržišni Lider</span>
+                        <img src="jedanaest.jpg" alt="Lubenice">
+                    </div>
+                    <div class="card-content">
+                        <h3>Lubenice - Artikal u kojem dominiramo</h3>
+                        <p>Velike količine najkvalitetnijih lubenica na tržištu.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="ostala-ponuda" class="others-section">
+            <div class="section-header">
+                <h2 class="section-title">Prošireni Asortiman</h2>
+            </div>
+            <p class="others-intro">Također radimo sve vrste ostalih vrsta voća i povrća pored ovih glavnih artikala, neke od njih su:</p>
+            
+            <div class="others-list">
+                
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="tri.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #1</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Svježe selektovano i spremno za isporuku.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="cetiri.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #2</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Vrhunski kvalitet dostupan u velikim količinama.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="sest.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #3</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Kontrolisano porijeklo i garantovana svježina.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="sedam.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #4</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Savršen dodatak Vašoj ponudi voća i povrća.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="osam.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #5</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Direktna distribucija sa minimalnim vremenom transporta.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="devet.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #6</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Optimalni uslovi skladištenja za maksimalnu dugotrajnost.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="dvanaest.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #7</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Najbolji omjer cijene i kvaliteta na tržištu.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="trinaest.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #8</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Pouzdano snabdijevanje tokom cijele sezone.</p>
+                    </div>
+                </div>
+
+                <div class="other-item-card">
+                    <div class="other-image-box">
+                        <img src="cetrnaest.jpg" alt="Premium Artikal">
+                    </div>
+                    <div class="other-info">
+                        <h4>Premium Artikal #9</h4>
+                        <p>Ovdje možete unijeti naziv artikla. Svježina koja pravi razliku.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="kontakt" style="margin-bottom: 40px;">
+            <div class="section-header">
+                <h2 class="section-title">Kako doći do nas?</h2>
+            </div>
+            <p style="margin-bottom: 25px; text-align: center; font-size: 1.15rem; color: #4a5568;">
+                Posjetite nas na našem zvaničnom sjedištu. Ispod se nalazi tačna lokacija integrisana putem Google Maps:
+            </p>
+            <div class="map-container">
+                <iframe 
+                    src="https://maps.google.com/maps?q=44.8295307,18.5682205&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="footer-info">
+            <h3>Sa-Se PROM d.o.o.</h3>
+            <p><strong>Sjedište firme:</strong> Brčko distrikt BiH, Arizona, 76000 Brčko</p>
+            <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.6;">&copy; 2026 Sa-Se PROM d.o.o. Sva prava zadržana.</p>
+        </div>
+    </footer>
+
+    <div class="whatsapp-float-container">
+        <a href="https://wa.me/38761395555" class="whatsapp-btn" target="_blank" title="Kontaktirajte nas na WhatsApp 1">
+            <svg viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.164 1.24 8.413 3.488 2.248 2.248 3.483 5.236 3.48 8.414-.003 6.557-5.338 11.902-11.89 11.902-1.993-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.656.983 3.255 1.498 4.749 1.499 5.429 0 9.847-4.388 9.849-9.782.002-2.613-1.015-5.07-2.864-6.92C16.471 2.04 14.017 1.03 11.54 1.03 6.114 1.03 1.698 5.417 1.695 10.813c-.001 1.61.432 3.181 1.255 4.582l-.99 3.613 3.693-.969zM17.371 14.22c-.314-.157-1.86-.92-2.148-1.025-.289-.105-.499-.157-.708.157-.208.314-.808 1.025-.99 1.235-.181.208-.363.235-.677.079-1.343-.672-2.316-1.173-3.117-2.547-.21-.36-.21-.67-.042-.81.152-.127.335-.39.503-.587.168-.195.223-.335.335-.558.112-.223.056-.418-.028-.575-.084-.157-.708-1.705-.97-2.335-.255-.612-.513-.529-.708-.539-.182-.01-.391-.01-.599-.01-.208 0-.549.079-.836.39-.288.313-1.099 1.074-1.099 2.617 0 1.543 1.123 3.031 1.279 3.24 1.115 1.517 2.457 2.408 4.296 3.125 1.155.45 2.052.553 2.8.441.833-.125 1.86-.76 2.122-1.458.261-.697.261-1.294.183-1.422-.078-.127-.288-.208-.602-.364z"/>
+            </svg>
+            <span>WhatsApp 1</span>
+        </a>
+        
+        <a href="https://wa.me/38762164514" class="whatsapp-btn" target="_blank" title="Kontaktirajte nas na WhatsApp 2">
+            <svg viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.164 1.24 8.413 3.488 2.248 2.248 3.483 5.236 3.48 8.414-.003 6.557-5.338 11.902-11.89 11.902-1.993-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.656.983 3.255 1.498 4.749 1.499 5.429 0 9.847-4.388 9.849-9.782.002-2.613-1.015-5.07-2.864-6.92C16.471 2.04 14.017 1.03 11.54 1.03 6.114 1.03 1.698 5.417 1.695 10.813c-.001 1.61.432 3.181 1.255 4.582l-.99 3.613 3.693-.969zM17.371 14.22c-.314-.157-1.86-.92-2.148-1.025-.289-.105-.499-.157-.708.157-.208.314-.808 1.025-.99 1.235-.181.208-.363.235-.677.079-1.343-.672-2.316-1.173-3.117-2.547-.21-.36-.21-.67-.042-.81.152-.127.335-.39.503-.587.168-.195.223-.335.335-.558.112-.223.056-.418-.028-.575-.084-.157-.708-1.705-.97-2.335-.255-.612-.513-.529-.708-.539-.182-.01-.391-.01-.599-.01-.208 0-.549.079-.836.39-.288.313-1.099 1.074-1.099 2.617 0 1.543 1.123 3.031 1.279 3.24 1.115 1.517 2.457 2.408 4.296 3.125 1.155.45 2.052.553 2.8.441.833-.125 1.86-.76 2.122-1.458.261-.697.261-1.294.183-1.422-.078-.127-.288-.208-.602-.364z"/>
+            </svg>
+            <span>WhatsApp 2</span>
+        </a>
+    </div>
+
+</body>
+</html>
