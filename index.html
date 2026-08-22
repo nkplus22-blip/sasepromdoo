@@ -209,10 +209,68 @@
         .delivery-card-premium h3 { font-size: 2rem; margin-bottom: 15px; }
         .delivery-card-premium p { font-size: 1.1rem; color: rgba(255,255,255,0.8); }
         
-        /* Dekorativni element iza kartice */
         .visual-backdrop {
             position: absolute; top: 40px; right: 0; bottom: 0; left: 40px;
             border: 2px solid var(--primary-light); border-radius: 30px; z-index: 1;
+        }
+
+        /* --- TRENUTNO AKTUELNO (Nova Sekcija) --- */
+        .aktuelno-section { padding-top: 50px; }
+        .aktuelno-header-title {
+            font-size: 3.5rem; color: var(--dark); font-weight: 800; font-family: 'Playfair Display', serif;
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+        }
+        .aktuelno-header-subtitle {
+            font-size: 1.4rem; color: var(--primary); font-weight: 700;
+            background: var(--primary-light); padding: 10px 25px; border-radius: 50px;
+            display: inline-block; letter-spacing: 1px;
+        }
+
+        .aktuelno-grid {
+            display: grid; gap: 20px; margin-bottom: 50px;
+        }
+        /* Desktop asimetrični premium grid */
+        @media (min-width: 992px) {
+            .aktuelno-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 350px; }
+            .aktuelno-item:nth-child(1) { grid-column: 1 / 3; }
+            .aktuelno-item:nth-child(2) { grid-column: 3 / 5; }
+            .aktuelno-item:nth-child(3) { grid-column: 5 / 7; }
+            .aktuelno-item:nth-child(4) { grid-column: 2 / 4; }
+            .aktuelno-item:nth-child(5) { grid-column: 4 / 6; }
+        }
+        .aktuelno-item {
+            position: relative; border-radius: 24px; overflow: hidden;
+            box-shadow: var(--shadow-float); height: 100%; min-height: 250px;
+        }
+        .aktuelno-item img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--curve);
+        }
+        .aktuelno-item:hover img { transform: scale(1.1); }
+        .aktuelno-item::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+            opacity: 0; transition: opacity 0.5s;
+        }
+        .aktuelno-item:hover::after { opacity: 1; }
+        
+        .aktuelno-banner {
+            background: var(--dark); padding: 50px; border-radius: 30px; text-align: center;
+            position: relative; overflow: hidden; box-shadow: var(--shadow-glow);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .aktuelno-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(30,132,73,0.1) 0%, transparent 60%);
+            animation: rotateBg 15s linear infinite; pointer-events: none;
+        }
+        @keyframes rotateBg { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .aktuelno-banner p {
+            color: var(--white); font-size: 1.4rem; line-height: 1.8; margin: 0;
+            font-weight: 400; position: relative; z-index: 2;
+        }
+        .aktuelno-banner p strong {
+            display: block; margin-top: 15px; font-size: 1.6rem;
+            color: var(--accent-gold); font-family: 'Playfair Display', serif; letter-spacing: 1px;
         }
 
         /* --- STATISTIKA (Odbrojavanje) --- */
@@ -346,6 +404,11 @@
             .visual-backdrop { display: none; }
             .delivery-card-premium { padding: 40px; }
             
+            /* Responsive Aktuelno */
+            .aktuelno-header-title { font-size: 2.8rem; }
+            .aktuelno-grid { grid-template-columns: repeat(2, 1fr); }
+            .aktuelno-item:nth-child(5) { grid-column: 1 / -1; }
+
             .stats-wrapper { flex-direction: column; gap: 40px; border-radius: 20px; }
             .featured-grid { grid-template-columns: 1fr; }
             .article-card { height: 400px; }
@@ -360,6 +423,15 @@
             .hero p { font-size: 1.1rem; }
             .section { padding: 80px 5%; }
             .title { font-size: 2.5rem; }
+            
+            .aktuelno-header-title { font-size: 2.2rem; }
+            .aktuelno-header-subtitle { font-size: 1.1rem; padding: 8px 18px; }
+            .aktuelno-grid { grid-template-columns: 1fr; }
+            .aktuelno-item { min-height: 220px; }
+            .aktuelno-banner { padding: 30px 20px; }
+            .aktuelno-banner p { font-size: 1.1rem; }
+            .aktuelno-banner p strong { font-size: 1.3rem; }
+
             .wa-float { bottom: 20px; right: 20px; }
             .wa-btn { padding: 12px 20px; font-size: 0.9rem; }
             .wa-btn svg { width: 20px; height: 20px; }
@@ -434,6 +506,37 @@
                     <p>Kupovinom veće količine nudimo dovoz na adresu u cijeloj Bosni i Hercegovini. U bližem okrugu obezbjeđujemo dostavu i na manje količine.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- TRENUTNO AKTUELNO (NOVA SEKCIJA) -->
+    <section class="section aktuelno-section" style="padding-top: 0;">
+        <div class="section-header center fade-up">
+            <h2 class="aktuelno-header-title">Trenutno Aktuelno</h2>
+            <div class="aktuelno-header-subtitle">Mogućnost kupovine na veće i manje količine!</div>
+        </div>
+
+        <div class="aktuelno-grid fade-up delay-1">
+            <div class="aktuelno-item hover-target">
+                <img src="krompirnj.JPG" alt="Krompir">
+            </div>
+            <div class="aktuelno-item hover-target">
+                <img src="luk2.JPG" alt="Luk">
+            </div>
+            <div class="aktuelno-item hover-target">
+                <img src="kupus.JPG" alt="Kupus">
+            </div>
+            <div class="aktuelno-item hover-target">
+                <img src="paprike.jpg" alt="Paprike">
+            </div>
+            <div class="aktuelno-item hover-target">
+                <img src="Krastavci.JPG" alt="Krastavci">
+            </div>
+        </div>
+
+        <div class="aktuelno-banner fade-up delay-2 hover-target">
+            <p>Također mogućnost narudžbe artikala koji se ne nalaze trenutno u našoj ponudi.<br>
+            <strong>GARANTUJEMO KVALITET SVIH ARTIKALA.</strong></p>
         </div>
     </section>
 
@@ -673,5 +776,4 @@
 
 </body>
 </html>
-
 
