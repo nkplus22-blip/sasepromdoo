@@ -414,6 +414,159 @@ header.scrolled .logo-wrap img { height: 48px; }
 .marquee-content i { color: var(--accent-gold); font-size: 0.8rem; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+/* --- NAGLAŠENA SEKCIJA "TRENUTNO AKTUELNO" (TOP OF PAGE) --- */
+.top-aktuelno-section {
+  padding: 120px 4% 80px;
+  max-width: 1750px;
+  margin: 0 auto;
+  position: relative;
+}
+.top-aktuelno-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.top-aktuelno-banner-title {
+  display: inline-block;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  position: relative;
+  padding: 10px 30px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+}
+.top-aktuelno-badge-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--dark);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  padding: 10px 26px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.top-aktuelno-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.top-featured-card {
+  background: var(--surface-dark);
+  color: var(--white);
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-float);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  transition: var(--transition);
+  position: relative;
+}
+.top-featured-card.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+.top-featured-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 30px 90px rgba(212, 175, 55, 0.2);
+}
+
+.top-card-img-wrap {
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+}
+.top-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s var(--curve), filter 1s;
+}
+.top-featured-card:hover .top-card-img-wrap img {
+  transform: scale(1.08);
+}
+.top-card-tag {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: rgba(4, 7, 5, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.top-card-body {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.top-card-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.top-card-title {
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 25px;
+  line-height: 1.15;
+}
+.top-card-desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+.top-card-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 35px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 25px;
+}
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+}
+.spec-item i {
+  color: var(--accent-gold);
+  font-size: 1.1rem;
+}
+
 /* --- GLOBALNE SEKCIJE & NASLOVI --- */
 .section { padding: 160px 4%; max-width: 1750px; margin: 0 auto; position: relative; }
 .section-header { margin-bottom: 100px; display: flex; flex-direction: column; align-items: flex-start; }
@@ -973,6 +1126,8 @@ select.form-control { color: #fff; background-color: #0d1710; }
   .stat-item { border: none; padding-left: 0; }
   .quality-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
+  .top-featured-card, .top-featured-card.reverse { grid-template-columns: 1fr; }
+  .top-card-img-wrap { min-height: 380px; }
 }
 @media (max-width: 992px) {
   .nav-menu {
@@ -1031,6 +1186,8 @@ select.form-control { color: #fff; background-color: #0d1710; }
   .fc-buttons { grid-template-columns: repeat(2, 1fr); display: grid; gap: 8px; }
   .fc-btn { font-size: 0.65rem; padding: 10px 4px; }
   footer { padding-bottom: 220px; }
+  .top-card-body { padding: 40px 25px; }
+  .top-card-specs { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1065,6 +1222,7 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <span></span><span></span>
     </button>
     <nav class="nav-menu" id="navMenu">
+      <a href="#trenutno-aktuelno" class="nav-link" style="color: var(--accent-gold);">Aktuelno</a>
       <a href="#o-nama" class="nav-link">O nama</a>
       <a href="#artikli" class="nav-link">Specijalnost</a>
       <a href="#asortiman" class="nav-link">Asortiman</a>
@@ -1101,8 +1259,8 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <button onclick="openQuoteModal()" class="btn-hero-primary">
         <i class="fa-solid fa-calculator"></i> Zatražite Veleprodajnu Ponudu
       </button>
-      <a href="#artikli" class="btn-hero-secondary">
-        <i class="fa-solid fa-cubes"></i> Istražite Ponudu
+      <a href="#trenutno-aktuelno" class="btn-hero-secondary">
+        <i class="fa-solid fa-fire"></i> Trenutno Aktuelno
       </a>
     </div>
     <div class="hero-trust-bar fade-up delay-3">
@@ -1110,6 +1268,76 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Brza Distribucija BiH</div>
       <div class="trust-item"><i class="fa-solid fa-certificate"></i> Strogi Kontrolni Standardi</div>
     </div>
+  </div>
+</section>
+
+<!-- TRENUTNO AKTUELNO - GLAVNI NAGLAŠENI BLOK NA VRHU STRANICE -->
+<section id="trenutno-aktuelno" class="top-aktuelno-section">
+  <div class="top-aktuelno-header fade-up">
+    <div class="top-aktuelno-badge-header">
+      <i class="fa-solid fa-bolt"></i> Ekskluzivni Uvoz & Direktan Plasman
+    </div>
+    <br>
+    <h2 class="top-aktuelno-banner-title">TRENUTNO AKTUELNO</h2>
+    <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 800px; margin: 15px auto 0; font-weight: 500;">
+      Prvoklasni uvoz visoke kalibracije, skladišten u kontrolisanim uslovima i spreman za trenutnu isporuku.
+    </p>
+  </div>
+
+  <div class="top-aktuelno-container">
+    
+    <!-- ARTIKAL 1: Njemački Krompir -->
+    <div class="top-featured-card fade-up">
+      <div class="top-card-img-wrap">
+        <span class="top-card-tag"><i class="fa-solid fa-star"></i> Premium Import</span>
+        <img src="krompirnjemacka.HEIC" alt="Njemački Krompir" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=1000&q=80'">
+      </div>
+      <div class="top-card-body">
+        <div class="top-card-subtitle"><i class="fa-solid fa-certificate"></i> Vrhunska Njemačka Klasa (A/B)</div>
+        <h3 class="top-card-title serif">Njemački Krompir Extra Kvaliteta</h3>
+        <p class="top-card-desc">
+          Direktan uvoz iz renomiranih njemačkih poljoprivrednih regija poznatih po najstrožim evropskim fitosanitarnim i agrotehničkim standardima. Ovaj krompir se odlikuje besprijekorno glatkom, čistom ljuskom, ujednačenom zlatnom bojom i čvrstom strukturom mesa. Zbog visokog sadržaja suve materije i optimalnog odnosa skroba, zadržava savršenu teksturu, boju i ukus i nakon termičke obrade. Idealan je izbor kako za pakovanje za maloprodajne lance, tako i za gastronomske i industrijske objekte koji traže apsolutnu pouzdanost i estetski savršenstvo svakog ploda.
+        </p>
+        <div class="top-card-specs">
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Precizno kalibriran plod</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Otpornost na klijanje & duga trajnost</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Mrežaste vreće (10kg, 25kg, Big Bag)</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Certifikovano porijeklo i analiza</div>
+        </div>
+        <div>
+          <button onclick="openProductModal('Njemački Krompir Extra Klasa', 'Direktan uvoz iz Njemačke. Izuzetna struktura, čist i precizno kalibriran za veleprodaju i maloprodaju.', 'krompirnjemacka.HEIC')" class="btn-hero-primary" style="padding: 16px 36px; font-size: 0.8rem;">
+            <i class="fa-solid fa-cart-flatbed"></i> Zatražite Ponudu za Krompir
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTIKAL 2: Luk Holandija / Austrija -->
+    <div class="top-featured-card reverse fade-up delay-1">
+      <div class="top-card-body">
+        <div class="top-card-subtitle"><i class="fa-solid fa-globe"></i> Direktan Uvoz Holandija / Austrija</div>
+        <h3 class="top-card-title serif">Uvozni Luk Vrhunske Suvoće & Čvrstoće</h3>
+        <p class="top-card-desc">
+          Predstavljamo pažljivo odabrani žuti i crveni luk uvezen iz vodećih austrijskih i holandskih uzgajališta. Plodovi se odlikuju izuzetno čvrstim, višeslojnim zaštitnim omotačem (suvom ljuskom) koji garantuje višemjesečnu stabilnost bez gubitka mase ili kvaliteta. Glavice su pune, sočne i intenzivne arome, idealno pripremljene u savremenim sortirnicama. Zbog izuzetne kalibraže i sortne čistoće, ovaj luk je apsolutni favorit trgovačkih lanaca i veleprodajnih kupaca širom regiona.
+        </p>
+        <div class="top-card-specs">
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Visok procenat suve materije</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Izuzetna suvoća i čvrstoća ljuske</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Kalibraža 50-70mm / 60-80mm</div>
+          <div class="spec-item"><i class="fa-solid fa-circle-check"></i> Dostupne sve vrste pakovanja</div>
+        </div>
+        <div>
+          <button onclick="openProductModal('Uvozni Luk (Holandija/Austrija)', 'Strogo odabrane glavice visoke suvoće i čvrstoće. Dugačak rok trajanja, uvoz Holandija i Austrija.', 'lukuvoz.JPG')" class="btn-hero-primary" style="padding: 16px 36px; font-size: 0.8rem;">
+            <i class="fa-solid fa-cart-flatbed"></i> Zatražite Ponudu za Luk
+          </button>
+        </div>
+      </div>
+      <div class="top-card-img-wrap">
+        <span class="top-card-tag"><i class="fa-solid fa-award"></i> Top Klasa</span>
+        <img src="lukuvoz.JPG" alt="Luk Uvoz Holandija Austrija" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618512496248-a07fe83aa8cf?auto=format&fit=crop&w=1000&q=80'">
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1141,7 +1369,7 @@ select.form-control { color: #fff; background-color: #0d1710; }
         <div class="highlight-card">
           <div class="highlight-icon"><i class="fa-solid fa-globe"></i></div>
           <h4>Svjetske Regije</h4>
-          <p>Uvoz direktno iz Italije, Holandije, Turske, Španije i certifikovanih uzgajališta.</p>
+          <p>Uvoz direktno iz Italije, Holandije, Njemačke, Austrije, Turske i Španije.</p>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon"><i class="fa-solid fa-warehouse"></i></div>
@@ -1194,11 +1422,11 @@ select.form-control { color: #fff; background-color: #0d1710; }
   </div>
 </div>
 
-<!-- TRENUTNO AKTUELNO (Bento Grid) -->
+<!-- OSTALO TRENUTNO AKTUELNO (Bento Grid) -->
 <section class="section aktuelno-section" style="padding-top: 0;">
   <div class="section-header center fade-up">
     <div class="subtitle"><i class="fa-solid fa-fire"></i> Tržišni Favoriti</div>
-    <h2 class="title">Trenutno Aktuelno na Stanju</h2>
+    <h2 class="title">Izdvojeni Artikli na Stanju</h2>
     <p style="margin-top: 15px; font-size: 1.15rem; color: var(--text-muted); max-width: 700px;">Fleksibilnost narudžbi – obezbjeđujemo i šlepere i manje količine prema potrebama kupca.</p>
   </div>
   <div class="aktuelno-grid fade-up delay-1">
@@ -1207,7 +1435,7 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <img src="krompirnj.JPG" alt="Krompir" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80'">
       <div class="aktuelno-overlay-info">
         <div>
-          <h3>Krompir</h3>
+          <h3>Krompir Konzumni</h3>
           <p>Konzumni & Industrijski</p>
         </div>
         <div class="btn-quick-view"><i class="fa-solid fa-arrow-right"></i></div>
@@ -1218,7 +1446,7 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <img src="luk2.JPG" alt="Luk" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618512496248-a07fe83aa8cf?auto=format&fit=crop&w=800&q=80'">
       <div class="aktuelno-overlay-info">
         <div>
-          <h3>Luk</h3>
+          <h3>Luk Domaći & Uvoz</h3>
           <p>Pakovanja po želji</p>
         </div>
         <div class="btn-quick-view"><i class="fa-solid fa-arrow-right"></i></div>
@@ -1252,7 +1480,7 @@ select.form-control { color: #fff; background-color: #0d1710; }
       <div class="aktuelno-overlay-info">
         <div>
           <h3>Krastavci</h3>
-          <p>Salatni & Salatni Extra</p>
+          <p>Salatni & Extra</p>
         </div>
         <div class="btn-quick-view"><i class="fa-solid fa-arrow-right"></i></div>
       </div>
@@ -1433,12 +1661,12 @@ select.form-control { color: #fff; background-color: #0d1710; }
         </thead>
         <tbody>
           <tr>
-            <td>Krompir</td>
+            <td>Krompir (Njemačka/Uvoz)</td>
             <td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot available"></span></td><td><span class="status-dot available"></span></td><td><span class="status-dot peak"></span></td>
             <td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td>
           </tr>
           <tr>
-            <td>Luk Žuti/Crveni</td>
+            <td>Luk (Holandija/Austrija)</td>
             <td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot available"></span></td><td><span class="status-dot available"></span></td><td><span class="status-dot available"></span></td>
             <td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td><td><span class="status-dot peak"></span></td>
           </tr>
@@ -1500,41 +1728,41 @@ select.form-control { color: #fff; background-color: #0d1710; }
     </div>
     <div class="faq-item">
       <h3><i class="fa-solid fa-file-contract"></i> Da li obezbjeđujete svu prateću dokumentaciju?</h3>
-      <p>Da, svi naši artikli posjeduju uredne fitosanitarne nalaze, deklaracije o porijeklu i kompletnu porezno-veleprodajnu dokumentaciju za trgovačke lance i firme.</p>
+      <p>Da, svi naši artikli posjeduju uredne fitosanitarne nalaze, deklaracije o porijeklu i kompletnu prateću B2B dokumentaciju u skladu sa zakonodavstvom BiH.</p>
     </div>
     <div class="faq-item">
-      <h3><i class="fa-solid fa-clock"></i> Koliko brzo možemo očekivati isporuku?</h3>
-      <p>Zahvaljujući stalnim zalihama na našem skladištu na Arizoni, standardne isporuke u BiH realizujemo u roku od 24h do 48h od momenta potvrde narudžbe.</p>
+      <h3><i class="fa-solid fa-handshake"></i> Kako dogovoriti dugoročnu saradnju?</h3>
+      <p>Svim redovnim kupcima obezbjeđujemo prednost pri isporuci u sezonskim špicama, fiksne ugovorne cijene i fleksibilne uslove plaćanja. Kontaktirajte nas direktno putem telefona ili forme.</p>
     </div>
   </div>
 </section>
 
-<!-- LOKACIJA & MAPA -->
-<section id="kontakt" class="section" style="padding-top: 0; padding-bottom: 0;">
+<!-- KONTAKT & MAPA -->
+<section id="kontakt" class="section" style="padding-top: 0;">
   <div class="contact-wrap fade-up">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.837890289194!2d18.6080556155306!3d44.78388887909886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475c4ff80315e1e1%3A0x2a149b38f8f2e245!2sArizona%20Market!5e0!3m2!1sbs!2sba!4v1680000000000!5m2!1sbs!2sba" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="contact-overlay">
-      <div class="subtitle"><i class="fa-solid fa-location-dot"></i> Kontaktirajte Nas</div>
-      <h2>Zvanično Sjedište</h2>
-      <p>Posjetite nas u našem distribucionom centru na Arizoni. Naš tim stručnjaka spreman je za dogovor o dugoročnoj i profitabilnoj saradnji.</p>
+      <div class="subtitle"><i class="fa-solid fa-location-dot"></i> Sjedište & Distribucija</div>
+      <h2 class="serif">Stupite u Kontakt</h2>
+      <p>Nalazimo se na strateškoj lokaciji Arizona Brčko. Radujemo se uspješnoj poslovnoj saradnji!</p>
+      
       <div class="info-row">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <span>Brčko distrikt BiH, Arizona, 76000</span>
-      </div>
-      <div class="info-row">
-        <i class="fa-solid fa-phone-volume"></i>
-        <span>+387 62 581 454</span>
+        <i class="fa-solid fa-phone"></i>
+        <span>+387 61 733 388</span>
       </div>
       <div class="info-row">
         <i class="fa-solid fa-envelope"></i>
-        <span>info@sa-se-prom.ba</span>
+        <span>info@saseprom.ba</span>
       </div>
-      <div style="margin-top: 35px;">
-        <a href="https://maps.google.com/maps?q=44.8295307,18.5682205" target="_blank" class="btn-hero-primary" style="padding: 14px 28px; font-size: 0.75rem;">
-          <i class="fa-solid fa-diamond-turn-right"></i> Navigacija do Nas
-        </a>
+      <div class="info-row">
+        <i class="fa-solid fa-map-pin"></i>
+        <span>Tržnica Arizona, Brčko Distrikt, BiH</span>
+      </div>
+      <div class="info-row">
+        <i class="fa-solid fa-clock"></i>
+        <span>Pon - Sub: 07:00 - 17:00 h</span>
       </div>
     </div>
-    <iframe src="https://maps.google.com/maps?q=44.8295307,18.5682205&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -1542,310 +1770,260 @@ select.form-control { color: #fff; background-color: #0d1710; }
 <footer>
   <img src="saselogo.PNG" alt="Sa-Se PROM Logo" class="footer-logo-img" onerror="this.style.display='none'">
   <div class="footer-logo">Sa-Se PROM d.o.o.</div>
-  <p class="footer-tagline">Vaš strateški partner u svijetu svježine. Zlatni standard u industriji uvoza voća i povrća, rigorozna kontrola i profesionalizam koji nadilazi očekivanja.</p>
+  <p class="footer-tagline">Lider u uvozu i distribuciji svježeg voća i povrća. Zlatni standard pouzdanosti, kvaliteta i svježine 365 dana u godini.</p>
+  
   <div class="footer-links">
+    <a href="#trenutno-aktuelno">Aktuelno</a>
     <a href="#o-nama">O Nama</a>
     <a href="#artikli">Specijalnost</a>
     <a href="#asortiman">Asortiman</a>
-    <a href="#sezona">Sezonski Kalendar</a>
+    <a href="#sezona">Sezona</a>
     <a href="#faq">FAQ</a>
-    <a href="#kontakt">Sjedište i Mapa</a>
+    <a href="#kontakt">Kontakt</a>
   </div>
+  
   <div class="footer-line"></div>
-  <div class="copyright">© 2026 Sa-Se PROM d.o.o. Sva prava zadržana. Zlatni Standard Uvoza.</div>
+  <p class="copyright">&copy; 2026 Sa-Se PROM d.o.o. Sva prava zadržana. Design & Architecture Gold Standard.</p>
 </footer>
 
-<!-- PAMETNI LEBDEĆI KONTAKT WIDGET -->
-<div class="floating-contact" id="smartWidget">
-  <div class="fc-text">Brze Narudžbe i Upiti:</div>
+<!-- PAMETNI LEBDEĆI WIDGET -->
+<div class="floating-contact" id="floatingWidget">
+  <div class="fc-text"><i class="fa-solid fa-headset" style="color: var(--accent-gold); margin-right: 6px;"></i> Direktna Veza sa Prodajom</div>
   <div class="fc-buttons">
-    <a href="tel:+38762581454" class="fc-btn ph">
-      <i class="fa-solid fa-phone"></i>
-      <span>Poziv</span>
+    <a href="https://wa.me/38761733388" target="_blank" class="fc-btn wa">
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp
     </a>
-    <a href="https://wa.me/38762581454?text=Pozdrav%2C%20%C5%BEelio%20bih%20obaviti%20veleprodajni%20upit%20za%20artikle." class="fc-btn wa" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>
-      <span>WhatsApp</span>
+    <a href="viber://chat?number=%2B38761733388" class="fc-btn vi">
+      <i class="fa-brands fa-viber"></i> Viber
     </a>
-    <a href="viber://chat?number=%2B38762581454" class="fc-btn vi" target="_blank">
-      <i class="fa-brands fa-viber"></i>
-      <span>Viber</span>
+    <a href="tel:+38761733388" class="fc-btn ph">
+      <i class="fa-solid fa-phone"></i> Poziv
     </a>
     <button onclick="openQuoteModal()" class="fc-btn quote-trigger">
-      <i class="fa-solid fa-calculator"></i>
-      <span>Upit</span>
+      <i class="fa-solid fa-paper-plane"></i> Upit
     </button>
   </div>
 </div>
 
-<!-- MODAL ZA B2B UPIT -->
+<!-- B2B MODAL (ZA NARUDŽBE I UPITE) -->
 <div class="modal-overlay" id="quoteModal">
   <div class="modal-container">
     <button class="modal-close" onclick="closeQuoteModal()"><i class="fa-solid fa-xmark"></i></button>
     <div style="text-align: center; margin-bottom: 30px;">
-      <div class="subtitle gold" style="margin-bottom: 10px;"><i class="fa-solid fa-paper-plane"></i> Veleprodajni Upit</div>
-      <h2 style="font-size: 2rem; font-weight: 500;">Brza Ponuda i Narudžba</h2>
-      <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-top: 5px;">Ispunite obrazac i poruka će biti direktno formirana za WhatsApp slanje.</p>
+      <div class="subtitle gold" style="margin-bottom: 10px;"><i class="fa-solid fa-file-signature"></i> Brza Veleprodajna Ponuda</div>
+      <h3 class="serif" style="font-size: 2rem; color: #fff;" id="modalProductTitle">Pošaljite Upit za Nabavku</h3>
     </div>
-    <form id="quoteForm" onsubmit="sendQuoteToWhatsApp(event)">
+    <form id="quoteForm" onsubmit="handleFormSubmit(event)">
       <div class="form-group">
-        <label>Ime i Prezime / Naziv Firme</label>
-        <input type="text" id="qName" class="form-control" placeholder="npr. Bingo d.o.o. ili Marko Marković" required>
+        <label>Naziv Kompanije / Ime Kupca</label>
+        <input type="text" class="form-control" required placeholder="Npr. Bingo d.o.o. ili Vaše Ime">
       </div>
       <div class="form-group">
-        <label>Izaberite Primarni Artikal</label>
-        <select id="qProduct" class="form-control">
-          <option value="Krompir (I Klasa)">Krompir (I Klasa)</option>
-          <option value="Luk (Žuti/Crveni)">Luk (Žuti/Crveni)</option>
-          <option value="Lubenice">Lubenice</option>
-          <option value="Paprike / Kupus / Krastavac">Paprike / Kupus / Krastavac</option>
-          <option value="Sezonsko Voće (Trešnja, Jagoda, Breskva)">Sezonsko Voće (Trešnja, Jagoda, Breskva)</option>
-          <option value="Razno / Mješoviti Šleper">Mješoviti Utovar / Ostalo</option>
+        <label>Kontakt Telefon / Viber / WhatsApp</label>
+        <input type="tel" class="form-control" required placeholder="+387 6X XXX XXX">
+      </div>
+      <div class="form-group">
+        <label>Zainteresovani ste za artikal</label>
+        <select class="form-control" id="productSelect">
+          <option value="Njemački Krompir Extra Klasa">Njemački Krompir Extra Klasa</option>
+          <option value="Uvozni Luk (Holandija/Austrija)">Uvozni Luk (Holandija/Austrija)</option>
+          <option value="Krompir Konzumni">Krompir Konzumni</option>
+          <option value="Luk Domaći & Uvoz">Luk Domaći & Uvoz</option>
+          <option value="Lubenica Slatka Klasa">Lubenica Slatka Klasa</option>
+          <option value="Kupus Glavica">Kupus Glavica</option>
+          <option value="Paprika A Klasa">Paprika A Klasa</option>
+          <option value="Ostalo iz asortimana">Ostalo iz asortimana / Kompletan miks</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Okvirna Količina (Tona / Paleta)</label>
-        <input type="text" id="qQuantity" class="form-control" placeholder="npr. 5 Tona, 2 Palete ili 1 Šleper" required>
+        <label>Okvirna Količina & Napomena (npr. 5 tona, Arizona ili dostava)</label>
+        <textarea class="form-control" rows="3" placeholder="Napišite detalje vaše narudžbe ili lokaciju za dostavu..."></textarea>
       </div>
-      <div class="form-group">
-        <label>Lokacija Dostave</label>
-        <input type="text" id="qLocation" class="form-control" placeholder="npr. Sarajevo, Banja Luka, Tuzla..." required>
-      </div>
-      <div class="form-group">
-        <label>Dodatna Napomena</label>
-        <textarea id="qNote" class="form-control" rows="3" placeholder="Specifična pakovanja, rokovi ili drugi detalji..."></textarea>
-      </div>
-      <button type="submit" class="btn-hero-primary" style="width: 100%; justify-content: center; padding: 18px;">
-        <i class="fa-brands fa-whatsapp"></i> Pošaljite Upit na WhatsApp
+      <button type="submit" class="btn-hero-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+        <i class="fa-solid fa-paper-plane"></i> Pošaljite Upit
       </button>
     </form>
   </div>
 </div>
 
-<!-- MODAL ZA BRZI PREGLED PROIZVODA -->
-<div class="modal-overlay" id="productModal">
-  <div class="modal-container" style="max-width: 550px;">
-    <button class="modal-close" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
-    <div id="productModalContent"></div>
-  </div>
-</div>
-
-<!-- JAVASCRIPT LOGIKA -->
+<!-- JAVASCRIPT ANIMACIJE & INTERAKCIJE -->
 <script>
-// 1. PRELOADER LOGIKA
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-      preloader.style.opacity = '0';
-      setTimeout(() => { preloader.style.visibility = 'hidden'; }, 1200);
-    }
-  }, 1200);
-});
+// Custom Cursor Logic
+const cursorDot = document.getElementById('cursorDot');
+const cursorOutline = document.getElementById('cursorOutline');
 
-// 2. CUSTOM CURSOR (Desktop)
-const isDesktop = window.innerWidth > 992;
-if (isDesktop) {
-  const dot = document.getElementById('cursorDot');
-  const outline = document.getElementById('cursorOutline');
+if (window.innerWidth > 992) {
   window.addEventListener('mousemove', (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
-    if (dot) {
-      dot.style.left = `${posX}px`;
-      dot.style.top = `${posY}px`;
-    }
-    if (outline) {
-      outline.animate(
-        { left: `${posX}px`, top: `${posY}px` },
-        { duration: 250, fill: 'forwards', easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
-      );
-    }
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    cursorOutline.animate({
+      left: `${posX}px`,
+      top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
   });
 
-  document.querySelectorAll('a, button, .aktuelno-item, .article-card, .assortment-card').forEach(target => {
-    target.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-    target.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  const interactiveElements = document.querySelectorAll('a, button, .aktuelno-item, .article-card, .assortment-card, .top-featured-card');
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
   });
 }
 
-// 3. SMART HEADER & SCROLL PROGRESS & SMART WIDGET
-const header = document.getElementById('header');
+// Preloader Hide
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => {
+    preloader.style.opacity = '0';
+    preloader.style.visibility = 'hidden';
+  }, 1000);
+});
+
+// Scroll Progress & Header Visibility
 const scrollProgress = document.getElementById('scroll-progress');
-const smartWidget = document.getElementById('smartWidget');
-let lastScroll = 0;
+const header = document.getElementById('header');
+const floatingWidget = document.getElementById('floatingWidget');
+let lastScrollTop = 0;
 let scrollTimeout;
 
 window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  if (currentScroll > 40) header.classList.add('scrolled');
-  else header.classList.remove('scrolled');
-
-  if (currentScroll > lastScroll && currentScroll > 450) header.classList.add('hidden');
-  else header.classList.remove('hidden');
-
-  lastScroll = currentScroll;
-
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const winScroll = document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (winScroll / height) * 100;
-  if (scrollProgress) scrollProgress.style.width = scrolled + "%";
+  scrollProgress.style.width = scrolled + '%';
 
-  // SMART WIDGET SCROLL HIDE
-  if (smartWidget) {
-    if (currentScroll > 200) {
-      smartWidget.classList.add('is-scrolling');
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        smartWidget.classList.remove('is-scrolling');
-      }, 800);
-    } else {
-      smartWidget.classList.remove('is-scrolling');
-    }
+  // Header Style on Scroll
+  if (winScroll > 80) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
   }
+
+  // Floating Widget Hide on Scroll
+  floatingWidget.classList.add('is-scrolling');
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    floatingWidget.classList.remove('is-scrolling');
+  }, 400);
+
+  // Animate Elements on Scroll
+  animateOnScroll();
+  triggerStatsCounter();
 });
 
-// 4. MOBILNI MENI
+// Mobile Hamburger Menu
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-link');
 
-if (hamburger && navMenu) {
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
   });
+});
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+// Intersection Observer for Scroll Fade-up Animation
+function animateOnScroll() {
+  const fadeElements = document.querySelectorAll('.fade-up');
+  fadeElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top <= windowHeight * 0.88) {
+      el.classList.add('visible');
+    }
   });
 }
+window.addEventListener('DOMContentLoaded', animateOnScroll);
 
-// 5. ANIMACIJE PRI SCROLLANJU & BROJAČ STATISTIKE
-const observerOptions = { threshold: 0.12, rootMargin: "0px 0px -50px 0px" };
-let countStarted = false;
+// Stats Counter
+let statsTriggered = false;
+function triggerStatsCounter() {
+  const statsSection = document.getElementById('stats');
+  if (!statsSection || statsTriggered) return;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      if (entry.target.id === 'stats' && !countStarted) {
-        countStarted = true;
-        const counters = document.querySelectorAll('.stat-num');
-        counters.forEach(counter => {
-          const target = +counter.getAttribute('data-target');
-          const duration = 2000;
-          const increment = target / (duration / 16);
-          let current = 0;
-          const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-              counter.innerText = Math.ceil(current);
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.innerText = target;
-            }
-          };
-          updateCounter();
-        });
-      }
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.fade-up, #stats').forEach(el => observer.observe(el));
-
-// 6. MODAL ZA B2B UPITE (WhatsApp Slanje)
-function openQuoteModal(productName = '') {
-  const modal = document.getElementById('quoteModal');
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    if (productName) {
-      const select = document.getElementById('qProduct');
-      if (select) {
-        for (let i = 0; i < select.options.length; i++) {
-          if (select.options[i].text.toLowerCase().includes(productName.toLowerCase())) {
-            select.selectedIndex = i;
-            break;
-          }
+  const rect = statsSection.getBoundingClientRect();
+  if (rect.top <= window.innerHeight * 0.85) {
+    statsTriggered = true;
+    const counters = document.querySelectorAll('.stat-num');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+      const speed = target / 50;
+      const updateCount = () => {
+        count += speed;
+        if (count < target) {
+          counter.innerText = Math.ceil(count);
+          setTimeout(updateCount, 30);
+        } else {
+          counter.innerText = target;
         }
-      }
-    }
+      };
+      updateCount();
+    });
   }
+}
+
+// B2B Modal Handling
+const quoteModal = document.getElementById('quoteModal');
+const productSelect = document.getElementById('productSelect');
+const modalProductTitle = document.getElementById('modalProductTitle');
+
+function openQuoteModal() {
+  quoteModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeQuoteModal() {
-  const modal = document.getElementById('quoteModal');
-  if (modal) {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+  quoteModal.classList.remove('active');
+  document.body.style.overflow = 'auto';
 }
 
-function sendQuoteToWhatsApp(e) {
-  e.preventDefault();
-  const name = document.getElementById('qName').value;
-  const product = document.getElementById('qProduct').value;
-  const quantity = document.getElementById('qQuantity').value;
-  const location = document.getElementById('qLocation').value;
-  const note = document.getElementById('qNote').value;
-
-  const text = `Pozdrav Sa-Se PROM d.o.o., šaljem veleprodajni upit za narudžbu:%0A%0A` +
-    `👤 *Kupac/Firma:* ${encodeURIComponent(name)}%0A` +
-    `📦 *Artikal:* ${encodeURIComponent(product)}%0A` +
-    `⚖️ *Količina:* ${encodeURIComponent(quantity)}%0A` +
-    `📍 *Lokacija Dostave:* ${encodeURIComponent(location)}%0A` +
-    (note ? `📝 *Napomena:* ${encodeURIComponent(note)}%0A` : '') +
-    `%0AMolimo Vas za povratnu informaciju o cijeni i dostupnosti. Hvala!`;
-
-  window.open(`https://wa.me/38762581454?text=${text}`, '_blank');
-  closeQuoteModal();
-}
-
-// 7. MODAL ZA BRZI PREGLED PROIZVODA
-function openProductModal(title, desc, imgSrc) {
-  const container = document.getElementById('productModalContent');
-  if (container) {
-    container.innerHTML = `
-      <div style="text-align: center;">
-        <img src="${imgSrc}" style="width: 100%; height: 260px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--glass-border);" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80'">
-        <div class="subtitle gold" style="margin-bottom: 10px;">Specifikacija Artikla</div>
-        <h3 style="font-size: 2.2rem; font-family: 'Playfair Display', serif; color: #fff; margin-bottom: 15px;">${title}</h3>
-        <p style="color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px;">${desc}</p>
-        <button onclick="closeProductModal(); openQuoteModal('${title}');" class="btn-hero-primary" style="width: 100%; justify-content: center;">
-          <i class="fa-solid fa-calculator"></i> Zatražite Ponudu Za Ovaj Artikal
-        </button>
-      </div>
-    `;
-    const productModal = document.getElementById('productModal');
-    if (productModal) {
-      productModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+function openProductModal(productName, description, imgPath) {
+  if (productSelect) {
+    for (let i = 0; i < productSelect.options.length; i++) {
+      if (productSelect.options[i].value === productName) {
+        productSelect.selectedIndex = i;
+        break;
+      }
     }
   }
-}
-
-function closeProductModal() {
-  const productModal = document.getElementById('productModal');
-  if (productModal) {
-    productModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
+  if (modalProductTitle) {
+    modalProductTitle.innerText = 'Upit za: ' + productName;
   }
+  openQuoteModal();
 }
 
-// Zatvaranje na klik van modala
-window.addEventListener('click', (e) => {
-  const qModal = document.getElementById('quoteModal');
-  const pModal = document.getElementById('productModal');
-  if (e.target === qModal) closeQuoteModal();
-  if (e.target === pModal) closeProductModal();
-});
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const formBtn = e.target.querySelector('button[type="submit"]');
+  const originalText = formBtn.innerHTML;
+  
+  formBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Slanje u toku...';
+  formBtn.disabled = true;
+
+  setTimeout(() => {
+    formBtn.innerHTML = '<i class="fa-solid fa-check"></i> Uspješno Poslano!';
+    formBtn.style.background = '#11472a';
+    formBtn.style.color = '#fff';
+    
+    setTimeout(() => {
+      closeQuoteModal();
+      formBtn.innerHTML = originalText;
+      formBtn.disabled = false;
+      formBtn.style.background = 'var(--gold-grad)';
+      formBtn.style.color = 'var(--dark)';
+      e.target.reset();
+    }, 1800);
+  }, 1200);
+}
 </script>
 </body>
 </html>
